@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mejoras de Energía Gratis y Electrodomésticos | Valle Central | Fresno, Clovis, Selma, Parlier, Reedley</title>
+<meta name="description" content="Central Valley homeowners may qualify for FREE energy-efficient appliances and home upgrades through PG&E programs. Fresno, Clovis, Selma, Parlier, Reedley. Check eligibility free."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@300;400;500;600;700&family=Lora:ital@1&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f5f8ff;
+  --white:#ffffff;
+  --dark:#001a3d;
+  --navy:#003087;
+  --navy-light:#004aad;
+  --navy-deep:#001f5c;
+  --orange:#f5a800;
+  --orange-dark:#d48e00;
+  --orange-light:#ffd166;
+  --warm:#fff8e6;
+  --light-blue:#e8f0ff;
+  --muted:#5a6a8a;
+  --border:rgba(0,48,135,0.12);
+  --shadow:0 4px 32px rgba(0,26,61,0.1);
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--dark);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,26,61,0.92);z-index:999;align-items:center;justify-content:center;padding:20px;}
+.modal-overlay.open{display:flex;}
+.modal-box{background:var(--white);width:100%;max-width:500px;position:relative;animation:popIn 0.3s ease;overflow:hidden;}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;color:rgba(255,255,255,0.6);font-size:24px;cursor:pointer;z-index:2;}
+.modal-head{background:linear-gradient(135deg,var(--navy),var(--navy-deep));padding:26px 32px;}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;line-height:1.2;}
+.modal-title span{color:var(--orange);}
+.modal-sub{font-size:12px;color:rgba(255,255,255,0.5);margin-top:5px;}
+.modal-body{padding:28px 32px;}
+.modal-success{display:none;padding:44px 32px;text-align:center;}
+.msi{font-size:52px;margin-bottom:14px;}
+.mst{font-family:'Playfair Display',serif;font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.mss{font-size:13px;color:var(--muted);line-height:1.65;}
+
+.fi{width:100%;background:var(--light-blue);border:1px solid var(--border);color:var(--dark);padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:10px;}
+.fi::placeholder{color:var(--muted);}
+.fi:focus{border-color:var(--navy);background:white;}
+.fsel{width:100%;background:var(--light-blue);border:1px solid var(--border);color:var(--muted);padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;margin-bottom:10px;cursor:pointer;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.sbtn{width:100%;background:linear-gradient(135deg,var(--orange),var(--orange-dark));color:var(--dark);border:none;padding:17px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;margin-top:4px;}
+.sbtn:hover{background:linear-gradient(135deg,var(--orange-dark),#b87a00);}
+.sbtn:disabled{opacity:0.5;cursor:not-allowed;}
+.fnote{font-size:11px;color:var(--muted);text-align:center;margin-top:10px;}
+
+/* TOP BANNER */
+.top-banner{background:linear-gradient(135deg,var(--navy),var(--navy-deep));padding:11px 24px;text-align:center;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;}
+.tb-pulse{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--orange);animation:pulse 1.5s infinite;}
+.tb-text{font-size:13px;font-weight:600;color:white;}
+.tb-text strong{color:var(--orange);}
+.tb-btn{background:var(--orange);color:var(--dark);padding:8px 18px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;border:none;cursor:pointer;white-space:nowrap;}
+
+/* PGE BADGE BANNER */
+.pge-banner{background:var(--orange);padding:10px 24px;text-align:center;}
+.pge-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;}
+.pge-badge{background:var(--navy);color:white;padding:5px 14px;font-size:11px;font-weight:800;letter-spacing:0.1em;text-transform:uppercase;}
+.pge-banner-text{font-size:13px;font-weight:700;color:var(--dark);}
+
+/* NAV */
+nav{background:var(--navy);padding:14px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,26,61,0.3);}
+.nlogo{display:flex;flex-direction:column;}
+.nlogo-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;}
+.nlogo-tag{font-size:10px;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:0.12em;text-transform:uppercase;margin-top:1px;}
+.nlinks{display:flex;gap:24px;list-style:none;}
+.nlinks a{color:rgba(255,255,255,0.8);text-decoration:none;font-size:13px;font-weight:500;cursor:pointer;transition:color 0.2s;}
+.nlinks a:hover{color:var(--orange);}
+.nright{display:flex;align-items:center;gap:12px;}
+.nphone{font-size:15px;font-weight:700;color:var(--orange);text-decoration:none;}
+.btn-nav{background:var(--orange);color:var(--dark);border:none;padding:11px 20px;font-family:'DM Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;}
+.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;}
+.hamburger span{display:block;width:22px;height:2px;background:white;}
+.mob-menu{display:none;position:fixed;inset:0;background:var(--navy);z-index:99;flex-direction:column;align-items:center;justify-content:center;gap:28px;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'Playfair Display',serif;font-size:32px;color:white;text-decoration:none;cursor:pointer;}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--navy-deep) 0%,var(--navy) 50%,#004aad 100%);padding:80px 40px 0;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(245,168,0,0.1) 0%,transparent 70%);pointer-events:none;}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(245,168,0,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;position:relative;z-index:1;}
+.hero-eyebrow{font-size:11px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--orange);margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+.hero-eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--orange);}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,4.2vw,58px);font-weight:800;line-height:1.05;letter-spacing:-0.02em;color:white;margin-bottom:20px;}
+.hero h1 em{font-style:italic;color:var(--orange);}
+.hero-sub{font-family:'Lora',serif;font-style:italic;font-size:16px;color:rgba(255,255,255,0.65);line-height:1.75;margin-bottom:24px;}
+.crisis-box{background:rgba(245,168,0,0.12);border:1px solid rgba(245,168,0,0.3);padding:20px 22px;margin-bottom:24px;}
+.cb-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:8px;}
+.cb-stat{font-family:'Playfair Display',serif;font-size:22px;font-weight:800;color:white;margin-bottom:4px;}
+.cb-sub{font-size:12px;color:rgba(255,255,255,0.55);line-height:1.55;}
+.hero-trust{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+.ht{font-size:12px;font-weight:600;color:white;display:flex;align-items:center;gap:6px;background:rgba(255,255,255,0.08);padding:6px 12px;}
+.ht::before{content:'✓';color:var(--orange);font-weight:800;}
+.hero-cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:20px;}
+.btn-primary{background:var(--orange);color:var(--dark);border:none;padding:16px 28px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;transition:all 0.2s;}
+.btn-primary:hover{background:var(--orange-dark);transform:translateY(-2px);}
+.btn-outline{background:transparent;color:var(--orange);border:1px solid rgba(245,168,0,0.4);padding:16px 28px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;}
+.hero-areas{font-size:12px;color:rgba(255,255,255,0.45);}
+.hero-areas strong{color:var(--orange);}
+
+/* HERO FORM CARD */
+.hero-form{background:white;padding:32px;box-shadow:0 20px 60px rgba(0,26,61,0.3);}
+.hf-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--navy);margin-bottom:4px;}
+.hf-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.hf-title span{color:var(--navy);}
+.hf-sub{font-size:12px;color:var(--muted);margin-bottom:20px;line-height:1.55;}
+.hf-success{display:none;text-align:center;padding:24px 0;}
+.hfs-icon{font-size:44px;margin-bottom:12px;}
+.hfs-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:800;color:var(--navy);margin-bottom:8px;}
+.hfs-sub{font-size:13px;color:var(--muted);line-height:1.65;}
+
+/* TRUST BAR */
+.tbar{background:var(--orange);padding:12px 24px;}
+.tbari{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;justify-content:center;gap:20px;}
+.tb{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:var(--dark);letter-spacing:0.06em;text-transform:uppercase;}
+.tb::before{content:'✓';font-weight:900;}
+
+/* PROGRAMS SECTION */
+.sec{padding:80px 40px;}
+.seci{max-width:1100px;margin:0 auto;}
+.slabel{font-size:10px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.slabel::before{content:'';display:block;width:20px;height:1px;background:var(--navy);}
+.sh2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:800;line-height:1.05;}
+.sh2 em{font-style:italic;color:var(--navy);}
+
+/* PROGRAM CARDS */
+.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
+.prog-card{background:white;padding:30px 24px;border-top:4px solid transparent;transition:all 0.3s;box-shadow:var(--shadow);}
+.prog-card:hover{border-top-color:var(--orange);transform:translateY(-4px);}
+.prog-icon{font-size:36px;margin-bottom:14px;}
+.prog-badge{display:inline-block;background:var(--navy);color:white;padding:4px 12px;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.prog-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--dark);margin-bottom:8px;}
+.prog-desc{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:16px;}
+.prog-benefit{background:var(--warm);border:1px solid rgba(245,168,0,0.3);padding:12px 14px;margin-bottom:14px;}
+.prog-benefit-label{font-size:9px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--orange-dark);margin-bottom:4px;}
+.prog-benefit-text{font-size:13px;font-weight:600;color:var(--dark);}
+.prog-btn{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+
+/* QUALIFY */
+.qualify-bg{background:linear-gradient(160deg,var(--navy-deep),var(--navy));padding:80px 40px;}
+.qualify-inner{max-width:1100px;margin:0 auto;}
+.qualify-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.qual-label{font-size:10px;font-weight:600;letter-spacing:0.25em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:10px;}
+.qual-label::before{content:'';display:block;width:20px;height:1px;background:var(--orange);}
+.qual-h2{font-family:'Playfair Display',serif;font-size:clamp(26px,3.5vw,44px);font-weight:800;color:white;line-height:1.05;margin-bottom:16px;}
+.qual-h2 em{font-style:italic;color:var(--orange);}
+.qual-sub{font-size:15px;color:rgba(255,255,255,0.6);line-height:1.7;margin-bottom:28px;}
+.qual-items{display:flex;flex-direction:column;gap:14px;margin-bottom:28px;}
+.qual-item{display:flex;gap:12px;align-items:flex-start;}
+.qi-check{width:28px;height:28px;background:rgba(245,168,0,0.15);border:1px solid rgba(245,168,0,0.3);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--orange);flex-shrink:0;font-weight:800;}
+.qi-title{font-size:14px;font-weight:700;color:white;margin-bottom:2px;}
+.qi-desc{font-size:12px;color:rgba(255,255,255,0.5);line-height:1.5;}
+.qual-right{background:rgba(255,255,255,0.04);border:1px solid rgba(245,168,0,0.15);padding:36px;}
+.qr-label{font-size:10px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);margin-bottom:12px;}
+.qr-title{font-family:'Playfair Display',serif;font-size:26px;font-weight:800;color:white;margin-bottom:8px;line-height:1.1;}
+.qr-sub{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.65;margin-bottom:20px;}
+.qr-offers{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+.qr-offer{background:rgba(245,168,0,0.1);border:1px solid rgba(245,168,0,0.2);padding:12px 14px;display:flex;align-items:center;gap:10px;}
+.qro-icon{font-size:20px;flex-shrink:0;}
+.qro-text{font-size:13px;color:rgba(255,255,255,0.8);}
+.qro-text strong{color:var(--orange);}
+.qr-btn{width:100%;background:var(--orange);color:var(--dark);border:none;padding:16px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;}
+.qr-note{font-size:11px;color:rgba(255,255,255,0.3);text-align:center;margin-top:10px;}
+
+/* CRISIS SECTION */
+.crisis-bg{background:var(--bg);padding:80px 40px;}
+.crisis-inner{max-width:1100px;margin:0 auto;}
+.crisis-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
+.ccard{background:white;padding:28px;border-bottom:3px solid var(--border);text-align:center;box-shadow:var(--shadow);}
+.ccard-num{font-family:'Playfair Display',serif;font-size:52px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:6px;}
+.ccard-num span{color:var(--orange);}
+.ccard-label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.ccard-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* AREAS */
+.areas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
+.area-card{background:white;padding:24px;border-left:3px solid transparent;transition:all 0.3s;cursor:pointer;box-shadow:var(--shadow);}
+.area-card:hover{border-left-color:var(--navy);}
+.area-city{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--dark);margin-bottom:4px;}
+.area-zip{font-size:10px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+.area-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.atag{background:var(--light-blue);color:var(--navy);padding:3px 9px;font-size:11px;font-weight:600;}
+.area-desc{font-size:12px;color:var(--muted);line-height:1.65;margin-bottom:12px;}
+.area-btn{font-size:11px;font-weight:700;color:var(--navy);letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;padding:0;}
+
+/* REVIEWS */
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;}
+.rev-card{background:white;padding:28px;border-top:3px solid transparent;transition:all 0.3s;box-shadow:var(--shadow);}
+.rev-card:hover{border-top-color:var(--orange);}
+.rev-stars{color:var(--orange);font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+.rev-text{font-family:'Lora',serif;font-style:italic;font-size:14px;line-height:1.8;color:var(--dark);margin-bottom:14px;}
+.rev-name{font-size:13px;font-weight:600;color:var(--dark);}
+.rev-area{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* CTA BAND */
+.cta-band{background:var(--navy);padding:64px 40px;text-align:center;}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:800;color:white;margin-bottom:10px;}
+.cta-title em{font-style:italic;color:var(--orange);}
+.cta-sub{font-size:15px;color:rgba(255,255,255,0.6);margin-bottom:32px;}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
+.btn-orange{background:var(--orange);color:var(--dark);border:none;padding:16px 32px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;}
+.btn-outline-white{background:transparent;color:white;border:1px solid rgba(255,255,255,0.3);padding:16px 32px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;text-decoration:none;display:inline-block;}
+
+/* INFO */
+.info-bar{background:var(--navy-deep);padding:52px 40px;}
+.info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;max-width:900px;margin:0 auto;text-align:center;}
+.iicon{font-size:24px;margin-bottom:10px;}
+.ititle{font-family:'Playfair Display',serif;font-size:18px;color:var(--orange);margin-bottom:6px;}
+.ibody{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.7;}
+.ibody strong{color:rgba(255,255,255,0.8);}
+.ibody a{color:var(--orange);text-decoration:none;}
+
+/* FOOTER */
+footer{background:#000f29;border-top:1px solid rgba(255,255,255,0.06);padding:48px 40px 28px;}
+.footer-inner{max-width:1100px;margin:0 auto;}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:36px;}
+.fbrand{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:white;}
+.ftagline{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.25);margin:4px 0 10px;}
+.fdesc{font-size:13px;color:rgba(255,255,255,0.3);line-height:1.7;max-width:220px;}
+.fphone{font-size:16px;font-weight:600;color:var(--orange);text-decoration:none;display:block;margin-top:12px;}
+.fctitle{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--orange);font-weight:600;margin-bottom:14px;}
+.flinks{list-style:none;}
+.flinks li{margin-bottom:8px;}
+.flinks a{font-size:13px;color:rgba(255,255,255,0.3);text-decoration:none;cursor:pointer;}
+.flinks a:hover{color:white;}
+.fbot{border-top:1px solid rgba(255,255,255,0.05);padding-top:18px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.fcopy{font-size:12px;color:rgba(255,255,255,0.2);}
+.faward{font-size:11px;color:var(--orange);}
+
+.disclaimer{background:var(--light-blue);padding:20px 40px;text-align:center;}
+.disclaimer p{font-size:11px;color:var(--muted);max-width:800px;margin:0 auto;line-height:1.65;}
+
+.smob{display:none;position:fixed;bottom:0;left:0;right:0;z-index:88;background:var(--orange);color:var(--dark);padding:18px;text-align:center;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+@keyframes popIn{from{opacity:0;transform:scale(0.94);}to{opacity:1;transform:scale(1);}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(0.8);}}
+
+@media(max-width:900px){
+  .hero-inner,.qualify-grid{grid-template-columns:1fr;}
+  .prog-grid,.crisis-grid,.areas-grid,.rev-grid{grid-template-columns:1fr;}
+  .footer-top{grid-template-columns:1fr 1fr;gap:28px;}
+  .info-grid{grid-template-columns:1fr;gap:20px;}
+  .smob{display:block;}
+  nav{padding:14px 20px;}
+  .nlinks{display:none;}
+  .hamburger{display:flex;}
+  .hero{padding:52px 20px 0;}
+  .sec,.qualify-bg,.crisis-bg{padding:56px 20px;}
+  .cta-btns{flex-direction:column;align-items:center;}
+  .frow{grid-template-columns:1fr;}
+}
+@media(max-width:580px){.footer-top{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-head">
+      <div class="modal-title">Verificar Su <span>Elegibilidad Gratis</span></div>
+      <div class="modal-sub">Electrodomésticos gratis · Facturas más bajas · Sin costo · Solo Valle Central</div>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <div class="frow">
+        <input class="fi" id="mn" placeholder="Su Nombre Completo *"/>
+        <input class="fi" id="mp" placeholder="Número de Teléfono *" type="tel"/>
+      </div>
+      <div class="frow">
+        <input class="fi" id="mz" placeholder="Código Postal *"/>
+        <select class="fsel" id="mc">
+          <option value="">Su Ciudad</option>
+          <option>Fresno</option>
+          <option>Clovis</option>
+          <option>Selma</option>
+          <option>Parlier</option>
+          <option>Reedley</option>
+          <option>Sanger</option>
+          <option>Fowler</option>
+          <option>Otro Valle Central</option>
+        </select>
+      </div>
+      <select class="fsel" id="mb">
+        <option value="">Cantidad de Factura Mensual PG&amp;E</option>
+        <option>Menos de $150/mes</option>
+        <option>$150 - $250/mes</option>
+        <option>$250 - $400/mes</option>
+        <option>$400 - $600/mes</option>
+        <option>$600+/mes</option>
+      </select>
+      <select class="fsel" id="mo">
+        <option value="">Propietario de Vivienda</option>
+        <option>Soy Propietario</option>
+        <option>Rento</option>
+        <option>Propietario de Casa Móvil</option>
+      </select>
+      <button class="sbtn" id="msub" onclick="submitModal()">Verificar Mi Elegibilidad Gratis Ahora →</button>
+      <p class="fnote">🔒 Su información solo se comparte con nuestros especialistas de energía del Valle Central. Sin spam.</p>
+    </div>
+    <div class="modal-success" id="modal-success">
+      <div class="msi">🎉</div>
+      <div class="mst">¡Puede Calificar!</div>
+      <div class="mss">Un especialista local de energía del Valle Central le llamará en 30 minutos para confirmar su elegibilidad para electrodomésticos y mejoras de energía gratis.<br/><br/>¿Preguntas? Llame:<br/><a href="tel:9515054671" style="color:var(--navy);font-weight:700;">(951) 505-4671</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP BANNER -->
+<div class="top-banner">
+  <span class="tb-pulse"></span>
+  <span class="tb-text">⚡ El Valle Central tiene algunas de las <strong>facturas de energía más altas del país</strong> — puede calificar para mejoras GRATIS a través de los programas de PG&E</span>
+  <button class="tb-btn" onclick="openModal()">Verificar Elegibilidad Gratis</button>
+</div>
+
+<!-- PGE BADGE BANNER -->
+<div class="pge-banner">
+  <div class="pge-banner-inner">
+    <span class="pge-badge">PG&amp;E Service Area</span>
+    <span class="pge-banner-text">Programa Autorizado de Asistencia de Ahorro de Energía · ESA · CARE · FERA · Sirviendo Fresno, Clovis, Selma, Parlier, Reedley y el Valle Central</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="nlogo">
+    <span class="nlogo-name">Ahorro de Energía del Valle Central</span>
+    <span class="nlogo-tag">Programas de Energía PG&E · Condado de Fresno</span>
+  </div>
+  <ul class="nlinks">
+    <li><a href="#programs">Programas</a></li>
+    <li><a href="#qualify">¿Califico?</a></li>
+    <li><a href="#areas">Áreas de Servicio</a></li>
+    <li><a href="#reviews">Opiniones</a></li>
+  </ul>
+  <div class="nright">
+    <a href="tel:9515054671" class="nphone">(951) 505-4671</a>
+    <button class="btn-nav" onclick="openModal()">Verificar Elegibilidad Gratis</button>
+  </div>
+  <button class="hamburger" onclick="document.getElementById('mobmenu').classList.add('open')"><span/><span/><span/></button>
+</nav>
+
+<div class="mob-menu" id="mobmenu">
+  <button onclick="document.getElementById('mobmenu').classList.remove('open')" style="position:absolute;top:24px;right:24px;background:none;border:none;font-size:28px;cursor:pointer;color:white;">✕</button>
+  <a href="#programs" onclick="document.getElementById('mobmenu').classList.remove('open')">Programas</a>
+  <a href="#qualify" onclick="document.getElementById('mobmenu').classList.remove('open')">¿Califico?</a>
+  <a href="#areas" onclick="document.getElementById('mobmenu').classList.remove('open')">Áreas de Servicio</a>
+  <button class="btn-nav" onclick="openModal();document.getElementById('mobmenu').classList.remove('open')">Verificar Elegibilidad Gratis</button>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Fresno · Clovis · Selma · Parlier · Reedley · Valle Central</div>
+      <h1>La Vida Es Cara.<br/>Su Factura de Energía<br/>No Debería <em>Arruinarle.</em></h1>
+      <p class="hero-sub">Los propietarios del Valle Central pueden calificar para electrodomésticos eficientes en energía GRATIS, lavadora y secadora, y mejoras del hogar a través de los programas de energía de PG&E. Sin costo para verificar. Sin compromiso.</p>
+      <div class="crisis-box">
+        <div class="cb-label">⚡ Crisis de Energía del Valle Central</div>
+        <div class="cb-stat">Las facturas de energía más altas del país — estamos aquí para ayudar.</div>
+        <div class="cb-sub">Veranos de tres dígitos. Inviernos helados. Facturas de PG&E por las nubes. Las familias del Valle Central merecen alivio — y estos programas existen para proporcionarlo.</div>
+      </div>
+      <div class="hero-trust">
+        <span class="ht">Lavadora y Secadora Gratis</span>
+        <span class="ht">Mejoras de Energía Gratis</span>
+        <span class="ht">Descuentos CARE en Factura</span>
+        <span class="ht">Sin Costo para Verificar</span>
+      </div>
+      <div class="hero-cta-row">
+        <button class="btn-primary" onclick="openModal()">Verificar Mi Elegibilidad Gratis →</button>
+        <a href="tel:9515054671" class="btn-outline">📞 (951) 505-4671</a>
+      </div>
+      <p class="hero-areas">Serving <strong>Fresno</strong>, <strong>Clovis</strong>, <strong>Selma</strong>, <strong>Parlier</strong>, <strong>Reedley</strong>, <strong>Sanger</strong>, <strong>Fowler</strong> & all of Central Valley</p>
+    </div>
+    <div>
+      <div class="hero-form">
+        <div id="hf-wrap">
+          <div class="hf-label">Verificación de Elegibilidad Gratis</div>
+          <div class="hf-title">¿Podría Calificar para <span>Electrodomésticos Gratis?</span></div>
+          <div class="hf-sub">Los propietarios calificados del Valle Central pueden recibir una lavadora y secadora GRATIS, electrodomésticos eficientes en energía, y mejoras del hogar sin costo a través del Programa de Asistencia de Ahorro de Energía de PG&E.</div>
+          <input class="fi" id="hn" placeholder="Su Nombre Completo *"/>
+          <input class="fi" id="hp" placeholder="Número de Teléfono *" type="tel"/>
+          <input class="fi" id="hz" placeholder="Código Postal *"/>
+          <select class="fsel" id="hc">
+            <option value="">Su Ciudad</option>
+            <option>Fresno</option>
+            <option>Clovis</option>
+            <option>Selma</option>
+            <option>Parlier</option>
+            <option>Reedley</option>
+            <option>Sanger</option>
+            <option>Fowler</option>
+            <option>Otro Valle Central</option>
+          </select>
+          <select class="fsel" id="hb">
+            <option value="">Factura Mensual de PG&amp;E</option>
+            <option>Menos de $150/mes</option>
+            <option>$150 - $250/mes</option>
+            <option>$250 - $400/mes</option>
+            <option>$400+/mo</option>
+          </select>
+          <button class="sbtn" id="hsub" onclick="submitHero()">Verificar Mi Elegibilidad Gratis →</button>
+          <p class="fnote">🔒 Sin spam. Su información se usa solo para verificar su elegibilidad para programas gratuitos.</p>
+        </div>
+        <div class="hf-success" id="hf-success">
+          <div class="hfs-icon">✅</div>
+          <div class="hfs-title">¡Solicitud Recibida!</div>
+          <div class="hfs-sub">Un especialista de energía del Valle Central le llamará en 30 minutos para revisar su elegibilidad gratuita.<br/><br/>Para ayuda inmediata:<br/><strong style="color:var(--navy);">(951) 505-4671</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TRUST BAR -->
+<div class="tbar">
+  <div class="tbari">
+    <span class="tb">Verificación de Elegibilidad Gratis</span>
+    <span class="tb">Sin Compromiso</span>
+    <span class="tb">Área de Servicio PG&E</span>
+    <span class="tb">Especialistas del Condado de Fresno</span>
+    <span class="tb">Lavadora y Secadora Gratis Available</span>
+  </div>
+</div>
+
+<!-- CENTRAL VALLEY CRISIS STATS -->
+<section class="crisis-bg">
+  <div class="crisis-inner">
+    <div class="slabel">La Crisis de Energía del Valle Central</div>
+    <h2 class="sh2">Por Qué las Familias del Valle Central<br/>Pagan <em>Más Que Nadie</em> en el País</h2>
+    <div class="crisis-grid">
+      <div class="ccard">
+        <div class="ccard-num">#<span>1</span></div>
+        <div class="ccard-label">Costos de Energía Más Altos</div>
+        <div class="ccard-desc">El Valle Central se clasifica consistentemente entre las regiones de mayor costo de energía en toda la nación. Los veranos de tres dígitos llevan las facturas a niveles inasequibles.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-num">115<span>°</span></div>
+        <div class="ccard-label">Temperaturas de Verano</div>
+        <div class="ccard-desc">Fresno, Selma, Parlier y ciudades circundantes enfrentan calor brutal de verano. El AC funciona sin parar — disparando las facturas de PG&E de junio a octubre.</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-num">$0</div>
+        <div class="ccard-label">Costo de Verificar Elegibilidad</div>
+        <div class="ccard-desc">Programas exist specifically to help Central Valley homeowners. There is absolutely no cost to check if you qualify for free upgrades and bill discounts.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="sec" id="programs" style="background:var(--bg);">
+  <div class="seci">
+    <div class="slabel">PG&E Energy Programas</div>
+    <h2 class="sh2">Free Programas Available to <em>Qualifying Homeowners</em></h2>
+    <div class="prog-grid">
+      <div class="prog-card">
+        <div class="prog-icon">🏠</div>
+        <div class="prog-badge">Programa ESA</div>
+        <div class="prog-name">Asistencia de Ahorro de Energía</div>
+        <div class="prog-desc">PG&E's Asistencia de Ahorro de Energía (ESA) Program provides free energy-efficient upgrades to income-qualified households. No cost to qualifying homeowners or renters.</div>
+        <div class="prog-benefit"><div class="prog-benefit-label">Lo Que Puede Recibir</div><div class="prog-benefit-text">Lavadora y secadora gratis, calentador de agua, refrigerador, calefacción, mejoras de iluminación y aislamiento</div></div>
+        <button class="prog-btn" onclick="openModal()">Verificar Mi Elegibilidad →</button>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">⚡</div>
+        <div class="prog-badge">Programa CARE</div>
+        <div class="prog-name">Tarifas Alternativas de California para la Energía</div>
+        <div class="prog-desc">El programa CARE proporciona un descuento mensual de aproximadamente 38% en electricidad y 20% en gas para clientes de PG&E que califiquen por ingresos en el Valle Central.</div>
+        <div class="prog-benefit"><div class="prog-benefit-label">Ahorro Mensual</div><div class="prog-benefit-text">Hasta 38% de descuento en su factura mensual de electricidad de PG&E — cada mes, automáticamente</div></div>
+        <button class="prog-btn" onclick="openModal()">Verificar Mi Elegibilidad →</button>
+      </div>
+      <div class="prog-card">
+        <div class="prog-icon">💡</div>
+        <div class="prog-badge">Programa FERA</div>
+        <div class="prog-name">Asistencia de Tarifa Eléctrica Familiar</div>
+        <div class="prog-desc">FERA proporciona un descuento del 18% en electricidad para hogares que no califican para CARE pero aún necesitan asistencia. Se verifica automáticamente cuando solicita CARE.</div>
+        <div class="prog-benefit"><div class="prog-benefit-label">Quién Califica</div><div class="prog-benefit-text">Hogares de 3+ personas con ingresos hasta el 250% de las pautas de pobreza federal</div></div>
+        <button class="prog-btn" onclick="openModal()">Verificar Mi Elegibilidad →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DO I QUALIFY -->
+<section class="qualify-bg" id="qualify">
+  <div class="qualify-inner">
+    <div class="qualify-grid">
+      <div>
+        <div class="qual-label">Quién Califica</div>
+        <h2 class="qual-h2">Propietarios del Valle Central<br/>Que Pueden <em>Calificar</em></h2>
+        <p class="qual-sub">Estos programas están diseñados específicamente para familias trabajadoras en el Valle Central. Si alguno de estos aplica a usted, probablemente califica.</p>
+        <div class="qual-items">
+          <div class="qual-item"><div class="qi-check">✓</div><div><div class="qi-title">Cliente de PG&E</div><div class="qi-desc">Usted recibe una factura de electricidad o gas de PG&E para su hogar en el Valle Central.</div></div></div>
+          <div class="qual-item"><div class="qi-check">✓</div><div><div class="qi-title">Pautas de Ingresos</div><div class="qi-desc">Ingresos del hogar en o por debajo del 200% de las pautas de pobreza federal (aproximadamente $62,400/año para una familia de cuatro).</div></div></div>
+          <div class="qual-item"><div class="qi-check">✓</div><div><div class="qi-title">Edad del Hogar</div><div class="qi-desc">Su hogar, apartamento o casa móvil tiene al menos 5 años — la mayoría de los hogares del Valle Central califican fácilmente.</div></div></div>
+          <div class="qual-item"><div class="qi-check">✓</div><div><div class="qi-title">Condado de Fresno y Área Circundante</div><div class="qi-desc">Sirviendo Fresno, Clovis, Selma, Parlier, Reedley, Sanger, Fowler y todas las ciudades del Valle Central.</div></div></div>
+        </div>
+        <button class="btn-orange" onclick="openModal()">Verificar Mi Elegibilidad Ahora — Es Gratis →</button>
+      </div>
+      <div class="qual-right">
+        <div class="qr-label">Lo Que Reciben los Hogares Calificados</div>
+        <div class="qr-title">Mejoras Gratis, Electrodomésticos Gratis, Facturas Más Bajas</div>
+        <div class="qr-sub">Sin costo para usted. Un especialista de energía viene a su hogar y determina exactamente para qué califica.</div>
+        <div class="qr-offers">
+          <div class="qr-offer"><div class="qro-icon">🫧</div><div class="qro-text"><strong>Lavadora y Secadora Gratis</strong> — Energy-efficient models for qualifying households</div></div>
+          <div class="qr-offer"><div class="qro-icon">🌡️</div><div class="qro-text"><strong>Calentador de Agua Gratis</strong> — Mejora de calentador de agua de bomba de calor sin costo</div></div>
+          <div class="qr-offer"><div class="qro-icon">❄️</div><div class="qro-text"><strong>Refrigerador Gratis</strong> — Reemplace unidades antiguas ineficientes con modelos Energy Star</div></div>
+          <div class="qr-offer"><div class="qro-icon">💡</div><div class="qro-text"><strong>Iluminación LED Gratis</strong> — Mejora de iluminación de todo el hogar incluida</div></div>
+          <div class="qr-offer"><div class="qro-icon">⚡</div><div class="qro-text"><strong>Hasta 38% de Descuento en Su Factura de PG&E</strong> — Descuento mensual CARE aplicado automáticamente</div></div>
+        </div>
+        <button class="qr-btn" onclick="openModal()">Verificar Mi Elegibilidad Gratis →</button>
+        <div class="qr-note">Sin costo · Sin compromiso · Sin presión de ventas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE AREAS -->
+<section class="sec" id="areas" style="background:var(--white);">
+  <div class="seci">
+    <div class="slabel">Where We Serve</div>
+    <h2 class="sh2">Sirviendo Propietarios en Todo el <em>Valle Central</em></h2>
+    <div class="areas-grid">
+      <div class="area-card" onclick="openModal()"><div class="area-city">Fresno</div><div class="area-zip">ZIP: 93701–93730+</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">CARE</span><span class="atag">Electrodomésticos Gratis</span></div><p class="area-desc"><strong>Propietarios de Fresno</strong> con facturas altas de PG&E pueden calificar para electrodomésticos y mejoras de energía gratis. Verifique elegibilidad en 60 segundos.</p><button class="area-btn">Verificar Elegibilidad en Fresno →</button></div>
+      <div class="area-card" onclick="openModal()"><div class="area-city">Clovis</div><div class="area-zip">ZIP: 93611–93619</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">FERA</span><span class="atag">Free Upgrades</span></div><p class="area-desc"><strong>Propietarios de Clovis</strong> — verifique si califica para los programas gratuitos de ahorro de energía de PG&E y mejoras de electrodomésticos.</p><button class="area-btn">Verificar Elegibilidad en Clovis →</button></div>
+      <div class="area-card" onclick="openModal()"><div class="area-city">Selma</div><div class="area-zip">ZIP: 93662</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">CARE</span><span class="atag">Free W&D</span></div><p class="area-desc"><strong>Propietarios de Selma</strong> que enfrentan facturas altas de verano pueden calificar para lavadora, secadora y mejoras completas de energía gratis.</p><button class="area-btn">Verificar Elegibilidad en Selma →</button></div>
+      <div class="area-card" onclick="openModal()"><div class="area-city">Parlier</div><div class="area-zip">ZIP: 93648</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">CARE</span><span class="atag">Electrodomésticos Gratis</span></div><p class="area-desc"><strong>Propietarios de Parlier</strong> — vea si su hogar califica para mejoras de eficiencia energética completamente gratuitas a través de los programas de PG&E.</p><button class="area-btn">Verificar Elegibilidad en Parlier →</button></div>
+      <div class="area-card" onclick="openModal()"><div class="area-city">Reedley</div><div class="area-zip">ZIP: 93654</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">FERA</span><span class="atag">Free Upgrades</span></div><p class="area-desc"><strong>Propietarios de Reedley</strong> — verifique su elegibilidad para programas de energía de PG&E y mejoras de electrodomésticos gratis ahora.</p><button class="area-btn">Verificar Elegibilidad en Reedley →</button></div>
+      <div class="area-card" onclick="openModal()"><div class="area-city">Sanger & Fowler</div><div class="area-zip">ZIP: 93657 · 93625</div><div class="area-tags"><span class="atag">Programa ESA</span><span class="atag">CARE</span><span class="atag">Free W&D</span></div><p class="area-desc"><strong>Propietarios de Sanger y Fowler</strong> — estas pequeñas ciudades del Valle Central a menudo tienen las tasas más altas de elegibilidad para programas gratuitos.</p><button class="area-btn">Verificar Elegibilidad →</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="sec" id="reviews" style="background:var(--bg);">
+  <div class="seci">
+    <div class="slabel">Lo Que Dicen las Familias del Valle Central</div>
+    <h2 class="sh2">Resultados Reales para <em>Familias Reales del Valle Central</em></h2>
+    <div class="rev-grid">
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"Mi factura de PG&E era más de $500 al mes en verano. Después del programa, mi factura bajó y recibí una lavadora y secadora nueva en mi puerta. Lloré. Esto cambió la vida de nuestra familia."</p><div class="rev-name">Propietario Local</div><div class="rev-area">Fresno, CA</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"No pensé que calificaría pero sí lo hice. Vinieron a mi casa, mejoraron todo gratis, y ahora mi factura eléctrica es una fracción de lo que era. Estos programas son reales."</p><div class="rev-name">Propietario Local</div><div class="rev-area">Selma, CA</div></div>
+      <div class="rev-card"><div class="rev-stars">★★★★★</div><p class="rev-text">"La vida es cara aquí en el Valle Central. Obtener estas mejoras gratis a través del programa de PG&E nos dio un alivio real. Le digo a cada vecino que verifique si califica."</p><div class="rev-name">Propietario Local</div><div class="rev-area">Parlier, CA</div></div>
+    </div>
+    <div style="text-align:center;margin-top:44px;"><button class="btn-orange" onclick="openModal()">Verificar Mi Elegibilidad Gratis Ahora →</button></div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="cta-band">
+  <div class="cta-title">La Vida Ya Es Suficientemente Cara.<br/><em>No Pague Más De Lo Necesario.</em></div>
+  <div class="cta-sub">Las familias del Valle Central merecen alivio. Verifique su elegibilidad para mejoras gratis en 60 segundos.</div>
+  <div class="cta-btns">
+    <button class="btn-orange" onclick="openModal()">Verificar Elegibilidad Gratis Now →</button>
+    <a href="tel:9515054671" class="btn-outline-white">📞 Llamar (951) 505-4671</a>
+  </div>
+</section>
+
+<!-- INFO -->
+<div class="info-bar">
+  <div class="info-grid">
+    <div><div class="iicon">📍</div><div class="ititle">Service Area</div><div class="ibody">Fresno, Clovis, Selma, Parlier,<br/>Reedley, Sanger, Fowler & Central Valley</div></div>
+    <div><div class="iicon">🕐</div><div class="ititle">Hours</div><div class="ibody">Lun–Sáb: 8am–7pm<br/><strong>Verificación de Elegibilidad Gratis Anytime</strong></div></div>
+    <div><div class="iicon">📞</div><div class="ititle">Llame Cuando Quiera</div><div class="ibody"><a href="tel:9515054671"><strong>(951) 505-4671</strong></a><br/>Verificación gratis, sin compromiso</div></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="fbrand">Ahorro de Energía del Valle Central</div>
+        <div class="ftagline">Programas de Energía PG&E · Condado de Fresno</div>
+        <p class="fdesc">Ayudando a los propietarios del Valle Central a acceder a programas de energía gratuitos. Sirviendo Fresno, Clovis, Selma, Parlier, Reedley y comunidades circundantes.</p>
+        <a href="tel:9515054671" class="fphone">(951) 505-4671</a>
+      </div>
+      <div>
+        <div class="fctitle">Programas</div>
+        <ul class="flinks"><li><a onclick="openModal()">Programa ESA</a></li><li><a onclick="openModal()">Descuento CARE</a></li><li><a onclick="openModal()">Descuento FERA</a></li><li><a onclick="openModal()">Lavadora y Secadora Gratis</a></li><li><a onclick="openModal()">Electrodomésticos Gratis</a></li></ul>
+      </div>
+      <div>
+        <div class="fctitle">Áreas de Servicio</div>
+        <ul class="flinks"><li><a onclick="openModal()">Fresno</a></li><li><a onclick="openModal()">Clovis</a></li><li><a onclick="openModal()">Selma</a></li><li><a onclick="openModal()">Parlier</a></li><li><a onclick="openModal()">Reedley</a></li><li><a onclick="openModal()">Sanger & Fowler</a></li></ul>
+      </div>
+      <div>
+        <div class="fctitle">Company</div>
+        <ul class="flinks"><li><a href="#reviews">Opiniones</a></li><li><a onclick="openModal()">Verificar Elegibilidad</a></li><li><a href="tel:9515054671">Contáctenos</a></li></ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <div class="fcopy">© 2025 Ahorro de Energía del Valle Central. All Rights Reserved. Serving PG&E customers in Fresno County and Central Valley, CA.</div>
+      <div class="faward">⚡ Ayudando a las Familias del Valle Central a Ahorrar Dinero en Energía</div>
+    </div>
+  </div>
+</footer>
+
+<div class="disclaimer">
+  <p>* Free appliance and energy upgrade offers are available through PG&E's Asistencia de Ahorro de Energía (ESA) Program to income-qualifying households. Eligibility is subject to program requirements, income verification, and availability. CARE and FERA discounts are subject to PG&E program terms. We are an authorized referral service — we are not affiliated with PG&E. Individual results may vary. Not all households will qualify for all benefits. Contact us for complete eligibility details.</p>
+</div>
+
+<a href="tel:9515054671" class="smob">⚡ Mejoras de Energía Gratis — Verificar Elegibilidad Now</a>
+
+<script>
+const ZAPIER = "https://hooks.zapier.com/hooks/catch/27593826/4yj9qiu/";
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  setTimeout(() => document.getElementById('mn').focus(), 100);
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  setTimeout(() => {
+    document.getElementById('modal-body').style.display = 'block';
+    document.getElementById('modal-success').style.display = 'none';
+    document.getElementById('msub').disabled = false;
+    document.getElementById('msub').textContent = 'Verificar Mi Elegibilidad Gratis Ahora →';
+    ['mn','mp','mz'].forEach(id => document.getElementById(id).value = '');
+  }, 300);
+}
+
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+async function submitModal() {
+  const n = document.getElementById('mn').value.trim();
+  const p = document.getElementById('mp').value.trim();
+  const z = document.getElementById('mz').value.trim();
+  if (!n || !p || !z) { alert('Por favor ingrese su nombre, teléfono y código postal.'); return; }
+  const btn = document.getElementById('msub');
+  btn.disabled = true; btn.textContent = 'Verificando Elegibilidad...';
+  await zap({name:n, phone:p, zip:z, city:document.getElementById('mc').value, bill:document.getElementById('mb').value, ownership:document.getElementById('mo').value, form:'modal', source:'Central Valley Energy ES'});
+  document.getElementById('modal-body').style.display = 'none';
+  document.getElementById('modal-success').style.display = 'block';
+}
+
+async function submitHero() {
+  const n = document.getElementById('hn').value.trim();
+  const p = document.getElementById('hp').value.trim();
+  const z = document.getElementById('hz').value.trim();
+  if (!n || !p || !z) { alert('Por favor ingrese su nombre, teléfono y código postal.'); return; }
+  const btn = document.getElementById('hsub');
+  btn.disabled = true; btn.textContent = 'Verificando Elegibilidad...';
+  await zap({name:n, phone:p, zip:z, city:document.getElementById('hc').value, bill:document.getElementById('hb').value, form:'hero', source:'Central Valley Energy ES'});
+  document.getElementById('hf-wrap').style.display = 'none';
+  document.getElementById('hf-success').style.display = 'block';
+}
+
+async function zap(data) {
+  try {
+    await fetch(ZAPIER, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({...data, timestamp: new Date().toISOString()})
+    });
+  } catch(e) { console.log(e); }
+}
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth'}); }
+  });
+});
+</script>
+</body>
+</html>
